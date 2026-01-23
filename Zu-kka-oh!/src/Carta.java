@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Carta {
     private final String nome;
     private int puntiVita;
@@ -13,10 +15,11 @@ public class Carta {
     };
     private int getDef;
     public Carta() {
+        int[] statistiche=creaStatistiche();
         this.nome = creaNome(prefissi, suffissi);
-        this.puntiVita = creaStatistiche()[0];
-        this.atk = creaStatistiche()[1];
-        this.def = creaStatistiche()[2];
+        this.puntiVita = statistiche[0];
+        this.atk = statistiche[1];
+        this.def = statistiche[2];
     }
     public String getNome() {
         return nome;
@@ -40,6 +43,14 @@ public class Carta {
         statistiche[0]=hp;
         statistiche[1]=atk;
         statistiche[2]=def;
+        if (controlloStatistiche(statistiche)){
+            for (int i = 0; i < statistiche.length; i++) {
+                statistiche[0]=sistemazioneStatistiche(statistiche)[0];
+                statistiche[1]=sistemazioneStatistiche(statistiche)[1];
+                statistiche[2]=sistemazioneStatistiche(statistiche)[2];
+            }
+
+        }
         return statistiche;
     }
     private static String creaNome(String[] pre,String[] suf){
@@ -51,21 +62,22 @@ public class Carta {
     }
     private static int[] sistemazioneStatistiche(int[]Statistiche){
         int[] stat = Statistiche;
-        int somma = stat[0]+stat[1]+ stat[2];
+        int somma = Statistiche[0]+Statistiche[1]+ Statistiche[2];
+        System.out.println("somma prima della sistemazione "+somma);
         while (somma>100) {
             stat[0]=stat[0]-1;
             stat[1]=stat[1]-1;
             stat[2]=stat[2]-1;
             somma = stat[0]+stat[1]+ stat[2];
+            System.out.println("somma dentro sistemazione "+somma);
+            System.out.println(Arrays.toString(stat));
         }
         return stat;
     }
     private static boolean controlloStatistiche(int[]Statistiche){
         int somma =Statistiche[0]+Statistiche[1]+Statistiche[2];
-        //controlla che la somma delle statistiche non sia superiore a 100 e rirorna vero se non lo supera e falso se supera il limite 
-        if (somma>100) {
-            return false;            
-        }
-        return true;
+        System.out.println("somma dentro controllo "+somma);
+        //controlla che la somma delle statistiche non sia superiore a 100 e rirorna falso se non lo supera e vero se supera il limite
+        return somma>100;
     }
 }
