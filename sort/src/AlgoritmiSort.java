@@ -22,26 +22,29 @@ public class AlgoritmiSort {
             arr[j + 1] = elemento;
         }
     }
-    public static int[] selectionSort(int[] arr, int n){
-        int[]ar=arr;
-        int min=10000000;
+    public static int[] selectionSort(int n, int min , int max){
+        int[]ar=creaarray(n, max, min);
+        int minimo=10000000;
         int index=0;
-        for (int i = 0; i < ar.length-1; i++) {
+        for (int i = 0; i < ar.length; i++) {
             System.out.println("aura");
-            for (int j = i; j < ar.length-1; j++) {
-                if (min>ar[j]) {
-                    System.out.println(min);
-                    min=ar[j];
+            for (int j = i; j < ar.length; j++) {
+                if (minimo>ar[j]) {
+                    System.out.println(minimo);
+                    minimo=ar[j];
                     index=j;
-                    System.out.println(min);
+                    System.out.println(minimo);
                 }
             }
+            System.out.println(index);
             ar[index]=ar[i];
-            ar[i]=min;
+            ar[i]=minimo;
+            minimo=1000000000;
+            System.out.println(Arrays.toString(ar));
         }
         return ar;
     }
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(selectionSort(creaarray(5, 50, 1), 5)));
+        System.out.println(Arrays.toString(selectionSort(5,1, 20)));
     }
 }
