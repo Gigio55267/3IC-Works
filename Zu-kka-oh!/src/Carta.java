@@ -3,35 +3,37 @@ public class Carta {
     private int puntiVita;
     private int atk;
     private int def;
-    public Carta(String nome, int puntiVita, int atk, int def) {
+    private static String [] prefissi={
+    "Drago", "Lupo", "Tigre", "Serpente", "Aquila","Golem", "Spirito", "Ombra",
+    "Fuoco", "Ghiaccio","Tuono", "Terra", "Vento", "Luce", "Oscuro"
+    };
+    private static String[] suffissi = {
+    "Antico", "Furioso", "Mistico", "Selvaggio", "Celeste","Infernale","Glaciale",
+    "Tonante","Sacro", "Maledetto","Supremo", "Eterno", "Fatale", "Divino", "Spettrale"
+    };
+    public Carta() {
         this.nome = nome;
-        this.puntiVita = puntiVita;
-        this.atk = atk;
-        this.def = def;
+        this.puntiVita = creaStatistiche();
+        this.atk = creaStatistiche();
+        this.def = creaStatistiche();
     }
     public String getNome() {
         return nome;
     }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
     public int getPuntiVita() {
         return puntiVita;
     }
-    public void setPuntiVita(int puntiVita) {
-        this.puntiVita = puntiVita;
-    }
+    
     public int getAtk() {
         return atk;
     }
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
+    
     public int getDef() {
         return def;
     }
-    public void setDef(int def) {
-        this.def = def;
-    };
+    public static int creaStatistiche(){
+        int stat=(int)Math.random()*(50-0)+0;
+        return stat;
+    }
     
 }
