@@ -1,10 +1,5 @@
-import java.util.Arrays;
 
 public class Carta {
-    @Override
-    public String toString() {
-        return "Carta [nome=" + nome + ", puntiVita=" + puntiVita + ", atk=" + atk + ", def=" + def + "]";
-    }
     private final String nome;
     private int puntiVita;
     private int atk;
@@ -39,6 +34,10 @@ public class Carta {
     public int getDef() {
         return def;
     }
+    @Override
+    public String toString() {
+        return  nome+"[" + " puntiVita= " + puntiVita + ", atk= " + atk + ", def= " + def + ", totale statistiche= "+this.getPuntiTotali()+"]";
+    }
     public static int[] creaStatistiche(){
         int atk=(int)(Math.random()*(50-0)+0);
         int def=(int)(Math.random()*(50-0)+0);
@@ -67,20 +66,20 @@ public class Carta {
     private static int[] sistemazioneStatistiche(int[]Statistiche){
         int[] stat = Statistiche;
         int somma = Statistiche[0]+Statistiche[1]+ Statistiche[2];
-        System.out.println("somma prima della sistemazione "+somma);
+        //System.out.println("somma prima della sistemazione "+somma);
         while (somma>100) {
             stat[0]=(int)(Math.random()*(50-0)+0);
             stat[1]=(int)(Math.random()*(50-0)+0);
             stat[2]=(int)(Math.random()*(50-0)+0);
             somma = stat[0]+stat[1]+ stat[2];
-            System.out.println("somma dentro sistemazione "+somma);
-            System.out.println(Arrays.toString(stat));
+            //System.out.println("somma dentro sistemazione "+somma);
+            //System.out.println(Arrays.toString(stat));
         }
         return stat;
     }
     private static boolean controlloStatistiche(int[]Statistiche){
         int somma =Statistiche[0]+Statistiche[1]+Statistiche[2];
-        System.out.println("somma dentro controllo "+somma);
+        //System.out.println("somma dentro controllo "+somma);
         //controlla che la somma delle statistiche non sia superiore a 100 e rirorna falso se non lo supera e vero se supera il limite
         return somma>100;
     }
