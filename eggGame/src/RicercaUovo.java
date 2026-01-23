@@ -1,4 +1,12 @@
 public class RicercaUovo {
+    public static int[] creaarray(int n, int max, int min) {
+        int[] arr = new int[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int) (Math.random() * (max - min) + min);
+        }
+        return arr;
+    }
+
     public static int ricercaLineare(EggGame gioco, int numeroPiani) {
         
         for (int i = 0; i < numeroPiani; i++) {
