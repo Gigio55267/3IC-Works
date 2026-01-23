@@ -5,7 +5,6 @@ public class App {
         System.out.println("vita "+provCarta.getPuntiVita());
         System.out.println("atk "+provCarta.getAtk());
         System.out.println("def "+provCarta.getDef());
-        int somma = provCarta.getPuntiVita()+provCarta.getAtk()+provCarta.getDef();
-        System.out.println("somma "+somma);
+        System.out.println("somma "+provCarta.getPuntiTotali());
     }
 }
