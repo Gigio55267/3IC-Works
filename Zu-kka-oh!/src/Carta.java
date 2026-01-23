@@ -14,9 +14,9 @@ public class Carta {
     private int getDef;
     public Carta() {
         this.nome = creaNome(prefissi, suffissi);
-        this.puntiVita = creaStatistiche();
-        this.atk = creaStatistiche();
-        this.def = creaStatistiche();
+        this.puntiVita = creaStatistiche()[0];
+        this.atk = creaStatistiche()[1];
+        this.def = creaStatistiche()[2];
     }
     public String getNome() {
         return nome;
@@ -32,9 +32,15 @@ public class Carta {
     public int getDef() {
         return def;
     }
-    public static int creaStatistiche(){
-        int stat=(int)(Math.random()*(50-0)+0);
-        return stat;
+    public static int[] creaStatistiche(){
+        int atk=(int)(Math.random()*(50-0)+0);
+        int def=(int)(Math.random()*(50-0)+0);
+        int hp=(int)(Math.random()*(50-0)+0);
+        int[]statistiche=new int[3];
+        statistiche[0]=hp;
+        statistiche[1]=atk;
+        statistiche[2]=def;
+        return statistiche;
     }
     private static String creaNome(String[] pre,String[] suf){
         int numpre=(int)(Math.random()*(15-1)+1);
@@ -56,6 +62,7 @@ public class Carta {
     }
     private static boolean controlloStatistiche(int[]Statistiche){
         int somma =Statistiche[0]+Statistiche[1]+Statistiche[2];
+        //controlla che la somma delle statistiche non sia superiore a 100 e rirorna vero se non lo supera e falso se supera il limite 
         if (somma>100) {
             return false;            
         }
