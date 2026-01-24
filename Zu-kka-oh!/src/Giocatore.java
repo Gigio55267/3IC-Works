@@ -11,6 +11,21 @@ public class Giocatore {
         this.carteincampo = new Carta[5];
         this.vita = 3;
     }
+    public String getNomegiocatore() {
+        return nomegiocatore;
+    }
+    public Carta[] getMazzo() {
+        return mazzo;
+    }
+    public Carta[] getMano() {
+        return mano;
+    }
+    public Carta[] getCarteincampo() {
+        return carteincampo;
+    }
+    public int getVita() {
+        return vita;
+    }
     private static Carta[] creaMazzo(){
         Carta[] mazzo=new Carta[50];
         for (int i = 0; i < mazzo.length; i++) {
@@ -27,5 +42,32 @@ public class Giocatore {
             contatore--;
         }
         return mano;
-    }      
+    }
+    public void  pescaCarte(Carta[]mazzo,Carta[]mano){
+        for (int i = 0; i < mano.length; i++) {
+            if (mano[i]==null) {
+                for (int j = 0; j < mazzo.length; j++) {
+                    if (mazzo[j]!=null) {
+                        mano[i]=mazzo[j];
+                    }
+                }
+                
+            }
+        }
+    }
+    public void evocaCarta(Carta[] mano,Carta[] campo){
+        int indexCartaDaPiazzare=0;
+        int piuhp=mano[0].getPuntiVita();
+        for (int i = 0; i < mano.length; i++) {
+            if (piuhp<mano[i].getPuntiVita()){
+                indexCartaDaPiazzare=i;
+            }
+        }
+        for (int i = 0; i < campo.length; i++) {
+             if (campo[i]==null) {
+                campo[i]=mano[indexCartaDaPiazzare];
+        }
+        }
+       
+    }
 }
