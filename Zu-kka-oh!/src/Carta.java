@@ -12,7 +12,6 @@ public class Carta {
     "Antico", "Furioso", "Mistico", "Selvaggio", "Celeste","Infernale","Glaciale",
     "Tonante","Sacro", "Maledetto","Supremo", "Eterno", "Fatale", "Divino", "Spettrale"
     };
-    private int getDef;
     public Carta() {
         int[] statistiche=creaStatistiche();
         this.nome = creaNome(prefissi, suffissi);
@@ -57,8 +56,8 @@ public class Carta {
         return statistiche;
     }
     private static String creaNome(String[] pre,String[] suf){
-        int numpre=(int)(Math.random()*(15-1)+1);
-        int numsuf=(int)(Math.random()*(15-1)+1);
+        int numpre=(int)(Math.random()*(pre.length));
+        int numsuf=(int)(Math.random()*(suf.length));
         String spazio=" ";
         String nome = pre[numpre]+spazio+suf[numsuf];
         return nome;
