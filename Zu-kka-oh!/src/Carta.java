@@ -4,6 +4,7 @@ public class Carta {
     private int puntiVita;
     private int atk;
     private int def;
+    Target target;
     private static String [] prefissi={
     "Drago", "Lupo", "Tigre", "Serpente", "Aquila","Golem", "Spirito", "Ombra",
     "Fuoco", "Ghiaccio","Tuono", "Terra", "Vento", "Luce", "Oscuro"
@@ -18,6 +19,7 @@ public class Carta {
         this.puntiVita = statistiche[0];
         this.atk = statistiche[1];
         this.def = statistiche[2];
+        this.target = Target.targetRandom();
     }
     public String getNome() {
         return nome;
@@ -84,5 +86,8 @@ public class Carta {
     public int getPuntiTotali(){
         int somma = this.atk+this.def+this.puntiVita;
         return  somma;
+    }
+    public Target getTarget() {
+        return target;
     }
 }

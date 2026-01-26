@@ -80,4 +80,27 @@ public class Giocatore {
         }
        
     }
+    public void attacca(Carta[]campo){
+        for (int i = 0; i < campo.length; i++) {
+            switch (this.getCarteincampo()[i].getTarget()) {
+            case DEF_DEBOLE:
+                
+                break;
+            case DEF_FORTE:
+                break;
+            case ATK_DEBOLE:
+                break;
+            case ATK_FORTE:
+                break;
+            case HP_ALTO:
+                break;
+            case HP_BASSO:
+                break;
+        
+            default:
+                break;
+        }
+        }
+        
+    }
 }
