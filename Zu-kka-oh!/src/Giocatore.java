@@ -54,9 +54,11 @@ public class Giocatore {
                 for (int j = 0; j < mazzo.length; j++) {
                     if (mazzo[j]!=null) {
                         mano[i]=mazzo[j];
+                        break;
                     }
+                    break;
                 }
-                
+                break;
             }
         }
     }
@@ -64,13 +66,16 @@ public class Giocatore {
         int indexCartaDaPiazzare=0;
         int piuhp=mano[0].getPuntiVita();
         for (int i = 0; i < mano.length; i++) {
-            if (piuhp<mano[i].getPuntiVita()){
+            if (mano[i]!=null) {
+               if (piuhp<mano[i].getPuntiVita()){
                 indexCartaDaPiazzare=i;
+            } 
             }
         }
         for (int i = 0; i < campo.length; i++) {
              if (Utility.trovaSpazioVuoto(campo)) {
                 campo[i]=mano[indexCartaDaPiazzare];
+                break;
         }
         }
        
