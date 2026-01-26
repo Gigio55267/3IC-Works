@@ -4,7 +4,7 @@ public class Giocatore {
     private Carta[] mano;
     private Carta[] carteincampo;
     private int vita;
-    private Target target;
+    private final Target target;
     public Giocatore(String nomegiocatore) {
         this.nomegiocatore = nomegiocatore;
         this.mazzo = creaMazzo();
@@ -27,6 +27,9 @@ public class Giocatore {
     }
     public int getVita() {
         return vita;
+    }
+    public Target getTarget() {
+        return target;
     }
     private static Carta[] creaMazzo(){
         Carta[] mazzo=new Carta[50];
