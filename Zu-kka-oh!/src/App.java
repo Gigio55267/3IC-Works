@@ -7,6 +7,5 @@ public class App {
         Giocatore giocatore=new Giocatore("piero");
         System.out.println(Arrays.toString(giocatore.getCarteincampo()));
         System.out.println(Arrays.toString(giocatore.getMano()));
-        System.out.println("prova di commit");
     }
 }
