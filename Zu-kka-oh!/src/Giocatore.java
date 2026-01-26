@@ -85,9 +85,13 @@ public class Giocatore {
         int max = 0;
         int index =0;
         int danno =0;
+        int cont=0;
         for (int i = 0; i < campo.length; i++) {
             if (campo[i]==null) {
-                
+                if (cont==5) {
+                    this.vita-=1;
+                    
+                }
             }
             else{}
             switch (this.getCarteincampo()[i].getTarget()) {
@@ -108,14 +112,46 @@ public class Giocatore {
                         max=campo[j].getDef();
                     }
                 }
+                danno = max - campo[i].getAtk();
+                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
                 break;
             case ATK_DEBOLE:
+                for (int j = 0; j < campo.length; j++) {
+                    if (min>campo[j].getAtk()) {
+                        min=campo[j].getAtk();
+                        index = j;
+                    }
+                }
+                danno = min - campo[i].getAtk();
+                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
                 break;
             case ATK_FORTE:
+                for (int j = 0; j < campo.length; j++) {
+                    if (max<campo[j].getAtk()) {
+                        max=campo[j].getAtk();
+                    }
+                }
+                danno = max - campo[i].getAtk();
+                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
                 break;
             case HP_ALTO:
+                for (int j = 0; j < campo.length; j++) {
+                    if (max<campo[j].getPuntiVita()) {
+                        max=campo[j].getPuntiVita();
+                    }
+                }
+                danno = max - campo[i].getAtk();
+                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
                 break;
             case HP_BASSO:
+                for (int j = 0; j < campo.length; j++) {
+                    if (min>campo[j].getPuntiVita()) {
+                        min=campo[j].getPuntiVita();
+                        index = j;
+                    }
+                }
+                danno = min - campo[i].getAtk();
+                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
                 break;
         
             default:
