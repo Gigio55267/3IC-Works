@@ -4,12 +4,14 @@ public class Giocatore {
     private Carta[] mano;
     private Carta[] carteincampo;
     private int vita;
+    private Target target;
     public Giocatore(String nomegiocatore) {
         this.nomegiocatore = nomegiocatore;
         this.mazzo = creaMazzo();
         this.mano = prendiPrimaMano(mazzo);
         this.carteincampo = new Carta[5];
         this.vita = 3;
+        this.target = Target.targetRandom();
     }
     public String getNomegiocatore() {
         return nomegiocatore;

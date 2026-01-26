@@ -40,18 +40,17 @@ public class Carta {
     public static int[] creaStatistiche(){
         int atk=(int)(Math.random()*(50-0)+0);
         int def=(int)(Math.random()*(50-0)+0);
-        int hp=(int)(Math.random()*(50-0)+0);
+        int hp=(int)(Math.random()*(50-1)+1);
         int[]statistiche=new int[3];
         statistiche[0]=hp;
         statistiche[1]=atk;
         statistiche[2]=def;
         if (controlloStatistiche(statistiche)){
-            for (int i = 0; i < statistiche.length; i++) {
+            while (controlloStatistiche(statistiche)) {
                 statistiche[0]=sistemazioneStatistiche(statistiche)[0];
                 statistiche[1]=sistemazioneStatistiche(statistiche)[1];
                 statistiche[2]=sistemazioneStatistiche(statistiche)[2];
-            }
-
+            } 
         }
         return statistiche;
     }
