@@ -81,12 +81,33 @@ public class Giocatore {
        
     }
     public void attacca(Carta[]campo){
+        int min = 1000000000;
+        int max = 0;
+        int index =0;
+        int danno =0;
         for (int i = 0; i < campo.length; i++) {
+            if (campo[i]==null) {
+                
+            }
+            else{}
             switch (this.getCarteincampo()[i].getTarget()) {
             case DEF_DEBOLE:
-                
+                for (int j = 0; j < campo.length; j++) {
+                    if (min>campo[j].getDef()) {
+                        min=campo[j].getDef();
+                        index = j;
+                    }
+                }
+                danno = min - campo[i].getAtk();
+                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
+
                 break;
             case DEF_FORTE:
+                for (int j = 0; j < campo.length; j++) {
+                    if (max<campo[j].getDef()) {
+                        max=campo[j].getDef();
+                    }
+                }
                 break;
             case ATK_DEBOLE:
                 break;

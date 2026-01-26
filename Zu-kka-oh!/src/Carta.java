@@ -90,4 +90,22 @@ public class Carta {
     public Target getTarget() {
         return target;
     }
+    public void setPuntiVita(int puntiVita) {
+        this.puntiVita = puntiVita;
+    }
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+    public void setDef(int def) {
+        this.def = def;
+    }
+    public void setTarget(Target target) {
+        this.target = target;
+    }
+    public static void setPrefissi(String[] prefissi) {
+        Carta.prefissi = prefissi;
+    }
+    public static void setSuffissi(String[] suffissi) {
+        Carta.suffissi = suffissi;
+    }
 }
