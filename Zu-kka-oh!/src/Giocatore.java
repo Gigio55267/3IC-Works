@@ -69,7 +69,7 @@ public class Giocatore {
             }
         }
         for (int i = 0; i < campo.length; i++) {
-             if (campo[i]==null) {
+             if (Utility.trovaSpazioVuoto(campo)) {
                 campo[i]=mano[indexCartaDaPiazzare];
         }
         }

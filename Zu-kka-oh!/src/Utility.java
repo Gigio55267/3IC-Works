@@ -1,7 +1,7 @@
 public class Utility {
-    public int trovaSpazioVuoto(Carta[]arr){
+    public static  boolean trovaSpazioVuoto(Carta[]arr){
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i]==null)  return i; }
-        return 0;
+            if (arr[i]==null)  return true ; }
+        return false;
     }
 }
