@@ -54,6 +54,7 @@ public class Giocatore {
                 for (int j = 0; j < mazzo.length; j++) {
                     if (mazzo[j]!=null) {
                         mano[i]=mazzo[j];
+                        System.out.println("hai pescato");
                         break;
                     }
                     break;
@@ -64,23 +65,23 @@ public class Giocatore {
     }
     public void evocaCarta(Carta[] mano,Carta[] campo){
         int indexCartaDaPiazzare=0;
-        int piuhp=mano[0].getPuntiVita();
-        for (int i = 0; i < mano.length; i++) {
-            if (mano[i]!=null) {
-               if (piuhp<mano[i].getPuntiVita()){
-                indexCartaDaPiazzare=i;
+        Carta[] carte = Utility.insertionSortVita(this.mano);
+        for (int i = 0; i < carte.length; i++) {
+            if (carte[i]!=null) {
+               carte[i]=null;
+               indexCartaDaPiazzare=i;
+               break;
             } 
             }
-        }
         for (int i = 0; i < campo.length; i++) {
              if (Utility.trovaSpazioVuoto(campo)) {
-                campo[i]=mano[indexCartaDaPiazzare];
+                campo[i]=carte[indexCartaDaPiazzare];
                 break;
         }
         }
        
     }
-    public void attacca(Carta[]campo){
+    public void attacca(Carta[]campo, Giocatore avversario){
         int min = 1000000000;
         int max = 0;
         int index =0;
@@ -90,7 +91,7 @@ public class Giocatore {
             this.carteincampo=Utility.insertionSortTotale(this.carteincampo);
             if (campo[i]==null) {
                 if (cont==5) {
-                    this.vita-=1;
+                    avversario.setVita(avversario.getVita()-1);
                     
                 }
             }
@@ -196,5 +197,9 @@ public class Giocatore {
         }
         }
         
+    }
+
+    public void setVita(int vita) {
+        this.vita = vita;
     }
 }

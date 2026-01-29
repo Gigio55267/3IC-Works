@@ -25,4 +25,20 @@ public class Utility {
         }
         return array;
     }
+    public static Carta[] insertionSortVita(Carta[] array){
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] != null) {
+                Carta elemento = array[i];
+                int j = i - 1;
+                if (array[j] != null){
+                    while (j >= 0 && elemento.getPuntiVita() < array[j].getPuntiVita()){
+                        array[j + 1] = array[j];
+                        j--;
+                    }
+                }
+                array[j + 1] = elemento;
+            }
+        }
+        return array;
+    }
 }
