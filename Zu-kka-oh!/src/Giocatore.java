@@ -87,6 +87,7 @@ public class Giocatore {
         int danno =0;
         int cont=0;
         for (int i = 0; i < campo.length; i++) {
+            this.carteincampo=Utility.insertionSortTotale(this.carteincampo);
             if (campo[i]==null) {
                 if (cont==5) {
                     this.vita-=1;
@@ -102,8 +103,14 @@ public class Giocatore {
                         index = j;
                     }
                 }
-                danno = min - campo[i].getAtk();
+                danno = campo[i].getDef() - campo[i].getAtk();
+                if (danno==0){
+                    danno=Utility.dannominimo();
+                }
                 campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
+                if (campo[index].getPuntiVita()<=0) {
+                    campo[index]=null;
+                }
 
                 break;
             case DEF_FORTE:
@@ -112,8 +119,14 @@ public class Giocatore {
                         max=campo[j].getDef();
                     }
                 }
-                danno = max - campo[i].getAtk();
+                danno = campo[i].getDef() - campo[i].getAtk();
+                if (danno==0){
+                    danno=Utility.dannominimo();
+                }
                 campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
+                if (campo[index].getPuntiVita()<=0) {
+                    campo[index]=null;
+                }
                 break;
             case ATK_DEBOLE:
                 for (int j = 0; j < campo.length; j++) {
@@ -122,8 +135,14 @@ public class Giocatore {
                         index = j;
                     }
                 }
-                danno = min - campo[i].getAtk();
+                danno = campo[i].getDef() - campo[i].getAtk();
+                if (danno==0){
+                    danno=Utility.dannominimo();
+                }
                 campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
+                if (campo[index].getPuntiVita()<=0) {
+                    campo[index]=null;
+                }
                 break;
             case ATK_FORTE:
                 for (int j = 0; j < campo.length; j++) {
@@ -131,8 +150,14 @@ public class Giocatore {
                         max=campo[j].getAtk();
                     }
                 }
-                danno = max - campo[i].getAtk();
+                danno = campo[i].getDef() - campo[i].getAtk();
+                if (danno==0){
+                    danno=Utility.dannominimo();
+                }
                 campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
+                if (campo[index].getPuntiVita()<=0) {
+                    campo[index]=null;
+                }
                 break;
             case HP_ALTO:
                 for (int j = 0; j < campo.length; j++) {
@@ -140,8 +165,14 @@ public class Giocatore {
                         max=campo[j].getPuntiVita();
                     }
                 }
-                danno = max - campo[i].getAtk();
+                danno = campo[i].getDef() - campo[i].getAtk();
+                if (danno==0){
+                    danno=Utility.dannominimo();
+                }
                 campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
+                if (campo[index].getPuntiVita()<=0) {
+                    campo[index]=null;
+                }
                 break;
             case HP_BASSO:
                 for (int j = 0; j < campo.length; j++) {
@@ -150,8 +181,14 @@ public class Giocatore {
                         index = j;
                     }
                 }
-                danno = min - campo[i].getAtk();
+                danno = campo[i].getDef() - campo[i].getAtk();
+                if (danno==0){
+                    danno=Utility.dannominimo();
+                }
                 campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
+                if (campo[index].getPuntiVita()<=0) {
+                    campo[index]=null;
+                }
                 break;
         
             default:

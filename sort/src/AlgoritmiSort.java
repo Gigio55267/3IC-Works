@@ -45,6 +45,8 @@ public class AlgoritmiSort {
         return ar;
     }
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(selectionSort(5,1, 20)));
+        int[]arr=creaarray(5, 30, 0);
+        insertionSort(arr,arr.length);
+        System.out.println(Arrays.toString(arr));
     }
 }
