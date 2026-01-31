@@ -13,12 +13,12 @@ primoTurno = true;
 }
 // Gioca 1 solo turno. Se `turno` è pari, tocca al giocatore1,
 // altrimenti tocca al giocatore2
-public void turno(boolean primoturno) {
+public void turno() {
     
-    System.out.println(primoturno);
-    if (primoturno){
-        primoturno=false;
-        System.out.println(primoturno);
+    System.out.println();
+    if (primoTurno){
+        primoTurno=false;
+        System.out.println(primoTurno);
         System.out.println("turno di "+giocatore1.getNomegiocatore());
         giocatore1.pescaCarte(giocatore1.getMazzo(), giocatore1.getMano());
         giocatore1.evocaCarta(giocatore1.getMano(), giocatore1.getCarteincampo());}
@@ -48,7 +48,7 @@ public void turno(boolean primoturno) {
 
 // Controlla se la partita è finita
 public boolean isFinita() {
-    return giocatore1.getVita() <= 0 || giocatore2.getVita() <= 0;
+    return giocatore1.vita <= 0 || giocatore2.vita <= 0;
  }
 // Ritorna il vincitore
 public Giocatore getVincitore() {
@@ -64,7 +64,8 @@ public Giocatore getVincitore() {
 public void gioca() {
     System.out.println("inizio della partita tra "+giocatore1.getNomegiocatore()+" e "+giocatore2.getNomegiocatore());
     while (!isFinita()) {
-        turno(primoTurno);
+        turno();
+        turno++;
     }
     getVincitore();
  }

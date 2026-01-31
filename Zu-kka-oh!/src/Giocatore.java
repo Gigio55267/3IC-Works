@@ -126,6 +126,16 @@ public class Giocatore {
                             System.out.println("La carta " + campo[i].getNome() + ", di " + this.getNomegiocatore() + ", ha inflitto 1 danno alla carta " + sottoAttacco.getNome() + ", di " + avversario.getNomegiocatore() + ".");
                             sottoAttacco.setPuntiVita(sottoAttacco.getPuntiVita()-1);
                         }
+                        if (sottoAttacco.puntiVita <= 0) {
+                            System.out.println("La carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ", è stata distrutta!");
+                            for (int k = 0; k < avversario.campo.length; k++) {
+                                if (avversario.campo[k] != null && avversario.campo[k].equals(sottoAttacco)) {
+                                    avversario.campo[k] = null;
+                                    break;
+                                }
+                            }
+                        }
+                        
 
                 break;
             case DEF_FORTE:
@@ -146,6 +156,15 @@ public class Giocatore {
                         if (danno > 0) {
                             System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto " + danno + " danni alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
                             sottoAttacco.puntiVita -= danno;
+                        }
+                        if (sottoAttacco.puntiVita <= 0) {
+                            System.out.println("La carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ", è stata distrutta!");
+                            for (int k = 0; k < avversario.campo.length; k++) {
+                                if (avversario.campo[k] != null && avversario.campo[k].equals(sottoAttacco)) {
+                                    avversario.campo[k] = null;
+                                    break;
+                                }
+                            }
                         }
                 break;
             case ATK_DEBOLE:
@@ -170,6 +189,15 @@ public class Giocatore {
                         else {
                             System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
                             sottoAttacco.puntiVita -= 1;
+                        }
+                        if (sottoAttacco.puntiVita <= 0) {
+                            System.out.println("La carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ", è stata distrutta!");
+                            for (int k = 0; k < avversario.campo.length; k++) {
+                                if (avversario.campo[k] != null && avversario.campo[k].equals(sottoAttacco)) {
+                                    avversario.campo[k] = null;
+                                    break;
+                                }
+                            }
                         }
                 break;
             case ATK_FORTE:
@@ -196,6 +224,15 @@ public class Giocatore {
                             System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
                             sottoAttacco.puntiVita -= 1;
                         }
+                        if (sottoAttacco.puntiVita <= 0) {
+                            System.out.println("La carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ", è stata distrutta!");
+                            for (int k = 0; k < avversario.campo.length; k++) {
+                                if (avversario.campo[k] != null && avversario.campo[k].equals(sottoAttacco)) {
+                                    avversario.campo[k] = null;
+                                    break;
+                                }
+                            }
+                        }
                 break;
             case HP_ALTO:
                 System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", attaccherà la carta con gli HP più alti di " + avversario.nomegiocatore + ".");
@@ -220,6 +257,16 @@ public class Giocatore {
                             System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
                             sottoAttacco.puntiVita -= 1;
                         }
+                        if (sottoAttacco.puntiVita <= 0) {
+                            System.out.println("La carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ", è stata distrutta!");
+                            for (int k = 0; k < avversario.campo.length; k++) {
+                                if (avversario.campo[k] != null && avversario.campo[k].equals(sottoAttacco)) {
+                                    avversario.campo[k] = null;
+                                    break;
+                                }
+                            }
+                        }
+                        
                 break;
             case HP_BASSO:
                 System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", attaccherà la carta con gli HP più bassi di " + avversario.nomegiocatore + ".");
@@ -243,6 +290,15 @@ public class Giocatore {
                         else {
                             System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
                             sottoAttacco.puntiVita -= 1;
+                        }
+                        if (sottoAttacco.puntiVita <= 0) {
+                            System.out.println("La carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ", è stata distrutta!");
+                            for (int k = 0; k < avversario.campo.length; k++) {
+                                if (avversario.campo[k] != null && avversario.campo[k].equals(sottoAttacco)) {
+                                    avversario.campo[k] = null;
+                                    break;
+                                }
+                            }
                         }
                 break;
         
