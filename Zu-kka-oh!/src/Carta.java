@@ -1,9 +1,9 @@
 
 public class Carta {
-    private final String nome;
-    private int puntiVita;
-    private int atk;
-    private int def;
+    protected final String nome;
+    protected int puntiVita;
+    protected int atk;
+    protected int def;
     Target target;
     private static String [] prefissi={
     "Drago", "Lupo", "Tigre", "Serpente", "Aquila","Golem", "Spirito", "Ombra",
@@ -17,9 +17,9 @@ public class Carta {
         //int[] statistiche=creaStatistiche();
         this.nome = creaNome(prefissi, suffissi);
         do {
-            this.puntiVita =(int) (Math.random()*(50-1)+1);
-            this.atk =(int) (Math.random()*(50-0)+0);
-            this.def = (int)(Math.random()*(50-0)+0);
+            this.puntiVita =(int) (Math.random()*(49)+1);
+            this.atk =(int) (Math.random()*(50));
+            this.def = (int)(Math.random()*(50));
         } while (atk+def+puntiVita>100);
         this.target = Target.targetRandom();
     }

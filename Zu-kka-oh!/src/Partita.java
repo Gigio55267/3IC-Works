@@ -14,37 +14,36 @@ primoTurno = true;
 // Gioca 1 solo turno. Se `turno` è pari, tocca al giocatore1,
 // altrimenti tocca al giocatore2
 public void turno(boolean primoturno) {
-    Giocatore giocatoreCorrente= new Giocatore(null);
-    Giocatore avversario =new Giocatore(null);
     
     System.out.println(primoturno);
-    while (turno<8) {
-        if (turno % 2 == 0){
-        giocatoreCorrente=giocatore1;
-        avversario=giocatore2;
-    }else {
-        giocatoreCorrente=giocatore2;
-        avversario=giocatore1;
-    }
-        if (primoturno){
+    if (primoturno){
         primoturno=false;
         System.out.println(primoturno);
-        System.out.println("turno di "+giocatoreCorrente.getNomegiocatore());
-        giocatoreCorrente.pescaCarte(giocatoreCorrente.getMazzo(), giocatoreCorrente.getMano());
-        giocatoreCorrente.evocaCarta(giocatoreCorrente.getMano(), giocatoreCorrente.getCarteincampo());    
-    } 
-    else {
-        System.out.println("turno di "+giocatoreCorrente.getNomegiocatore());
-        giocatoreCorrente.pescaCarte(giocatoreCorrente.getMazzo(), giocatoreCorrente.getMano());
-        System.out.println(Arrays.toString(giocatoreCorrente.getMano()) );
-        giocatoreCorrente.evocaCarta(giocatoreCorrente.getMano(), giocatoreCorrente.getCarteincampo()); 
-        System.out.println(Arrays.toString(giocatoreCorrente.getCarteincampo()));
-        giocatoreCorrente.attacca(avversario.getCarteincampo(), avversario);
-        System.out.println(Arrays.toString(avversario.getCarteincampo()));   
-    }
-    turno++;
+        System.out.println("turno di "+giocatore1.getNomegiocatore());
+        giocatore1.pescaCarte(giocatore1.getMazzo(), giocatore1.getMano());
+        giocatore1.evocaCarta(giocatore1.getMano(), giocatore1.getCarteincampo());}
+        else if (turno % 2 == 0){
+            System.out.println("turno di "+giocatore1.getNomegiocatore());
+        giocatore1.pescaCarte(giocatore1.getMazzo(), giocatore1.getMano());
+        //System.out.println(Arrays.toString(giocatoreCorrente.getMano()) );
+        giocatore1.evocaCarta(giocatore1.getMano(), giocatore1.getCarteincampo()); 
+        System.out.println("giocatore corrente "+Arrays.toString(giocatore1.getCarteincampo()));
+        giocatore1.attacca( giocatore2);
+        System.out.println("avversario "+Arrays.toString(giocatore2.getCarteincampo())); 
+        System.out.println(giocatore1.getVita());
+        System.out.println("mano "+ Arrays.toString(giocatore1.getMano()));
+        }else {
+        System.out.println("turno di "+giocatore2.getNomegiocatore());
+        giocatore2.pescaCarte(giocatore2.getMazzo(), giocatore2.getMano());
+        //System.out.println(Arrays.toString(giocatoreCorrente.getMano()) );
+        giocatore2.evocaCarta(giocatore2.getMano(), giocatore2.getCarteincampo()); 
+        System.out.println("giocatore corrente "+Arrays.toString(giocatore2.getCarteincampo()));
+        giocatore2.attacca( giocatore1);
+        System.out.println("avversario "+Arrays.toString(giocatore1.getCarteincampo())); 
+        System.out.println(giocatore2.getVita());
+        System.out.println("mano "+ Arrays.toString(giocatore2.getMano()));
+    }     
  }
-    }
     
 
 // Controlla se la partita è finita
@@ -64,8 +63,9 @@ public Giocatore getVincitore() {
 // Simula l'intera partita (vedi dopo)
 public void gioca() {
     System.out.println("inizio della partita tra "+giocatore1.getNomegiocatore()+" e "+giocatore2.getNomegiocatore());
+    while (!isFinita()) {
         turno(primoTurno);
-        System.out.println(giocatore1.getVita());
+    }
     getVincitore();
  }
 }

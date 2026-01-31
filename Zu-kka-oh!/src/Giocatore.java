@@ -1,15 +1,17 @@
+import java.util.Arrays;
+
 public class Giocatore {
-    private String nomegiocatore;
-    private Carta[] mazzo;
-    private Carta[] mano;
-    private Carta[] carteincampo;
-    private int vita;
+    protected String nomegiocatore;
+    protected Carta[] mazzo;
+    protected Carta[] mano;
+    protected Carta[] campo;
+    protected int vita;
     private final Target target;
     public Giocatore(String nomegiocatore) {
         this.nomegiocatore = nomegiocatore;
         this.mazzo = creaMazzo();
         this.mano = prendiPrimaMano(mazzo);
-        this.carteincampo = new Carta[5];
+        this.campo = new Carta[5];
         this.vita = 3;
         this.target = Target.targetRandom();
     }
@@ -23,7 +25,7 @@ public class Giocatore {
         return mano;
     }
     public Carta[] getCarteincampo() {
-        return carteincampo;
+        return campo;
     }
     public int getVita() {
         return vita;
@@ -72,8 +74,8 @@ public class Giocatore {
                 indexCartaDaPiazzare=i;
                System.out.println("hai evocato "+carte[i].getNome());
                for (int j = 0; j < campo.length; j++) {
-             if (Utility.trovaSpazioVuoto(campo)) {
-                campo[i]=carte[indexCartaDaPiazzare];
+                if (campo[j]==null) {
+                campo[j]=carte[indexCartaDaPiazzare];
                 break;
                 }
             }
@@ -82,128 +84,166 @@ public class Giocatore {
             } 
         }  
     }
-    public void attacca(Carta[]campo, Giocatore avversario){
+    public void attacca( Giocatore avversario){
         int min = 1000000000;
         int max = 0;
         int index =0;
         int danno =0;
         int cont=0;
-        for (int i = 0; i < campo.length; i++) {
-            this.carteincampo=Utility.insertionSortTotale(this.carteincampo);
-            if (campo[i]==null) {
+        for (int i = 0; i < this.campo.length; i++) {
+            this.campo=Utility.insertionSortTotale(this.campo);
+            System.out.println("prova campo in attacco "+Arrays.toString(campo));
+            if (this.campo[i]==null) {
                 if (cont==5) {
                     avversario.setVita(avversario.getVita()-1);
-                    
+                    cont++;
                 }
                 break;
             }
             else{}
+            System.out.println(this.getCarteincampo()[i].getNome()+" sta attaccando");
             switch (this.getCarteincampo()[i].getTarget()) {
             case DEF_DEBOLE:
-                for (int j = 0; j < campo.length; j++) {
-                    if (campo[j]!=null) {
-                        if (min>campo[j].getDef()) {
-                        min=campo[j].getDef();
-                        index = j;
-                    }
-                    }
-                }
-                danno = campo[i].getAtk() - campo[i].getDef();
-                if (danno==0){
-                    danno=Utility.dannominimo();
-                }
-                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
-                if (campo[index].getPuntiVita()<=0) {
-                    campo[index]=null;
-                }
+                System.out.println("La carta " + campo[i].getNome() + ", di " + this.getNomegiocatore() + ", attaccherà la carta con la DEF più bassa di " + avversario.getNomegiocatore() + ".");
+                        Carta sottoAttacco = avversario.campo[0];
+                        for (int j = 0; j < avversario.campo.length; j++) {
+                            if (sottoAttacco == null) {
+                                sottoAttacco = avversario.campo[j];
+                                continue;
+                            }
+                            if (avversario.campo[j] != null) {
+                                if (sottoAttacco.getDef() > avversario.campo[j].getDef()) {
+                                    sottoAttacco = avversario.campo[j];
+                                }
+                            }
+                        }
+                        danno = campo[i].getAtk() - sottoAttacco.getDef();
+                        if (danno > 0) {
+                            System.out.println("La carta " + campo[i].getNome() + ", di " + this.getNomegiocatore() + ", ha inflitto " + danno + " danni alla carta " + sottoAttacco.getNome() + ", di " + avversario.getNomegiocatore() + ".");
+                            sottoAttacco.setPuntiVita((sottoAttacco.getPuntiVita()-danno));
+                        }
+                        else {
+                            System.out.println("La carta " + campo[i].getNome() + ", di " + this.getNomegiocatore() + ", ha inflitto 1 danno alla carta " + sottoAttacco.getNome() + ", di " + avversario.getNomegiocatore() + ".");
+                            sottoAttacco.setPuntiVita(sottoAttacco.getPuntiVita()-1);
+                        }
 
                 break;
             case DEF_FORTE:
-                for (int j = 0; j < campo.length; j++) {
-                    if (campo[j]!=null) {
-                    if (max<campo[j].getDef()) {
-                        max=campo[j].getDef();
-                    }
-                }
-                }
-                danno = campo[i].getAtk() - campo[i].getDef();
-                if (danno==0){
-                    danno=Utility.dannominimo();
-                }
-                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
-                if (campo[index].getPuntiVita()<=0) {
-                    campo[index]=null;
-                }
+                System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", attaccherà la carta con la DEF più alta di " + avversario.nomegiocatore + ".");
+                        sottoAttacco = avversario.campo[0];
+                        for (int j = 0; j < avversario.campo.length; j++) {
+                            if (sottoAttacco == null) {
+                                sottoAttacco = avversario.campo[j];
+                                continue;
+                            }
+                            if (avversario.campo[j] != null) {
+                                if (sottoAttacco.def < avversario.campo[j].def) {
+                                    sottoAttacco = avversario.campo[j];
+                                }
+                            }
+                        }
+                        danno = campo[i].atk - sottoAttacco.def;
+                        if (danno > 0) {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto " + danno + " danni alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= danno;
+                        }
                 break;
             case ATK_DEBOLE:
-                for (int j = 0; j < campo.length; j++) {
-                    if (campo[j]!=null) {
-                    if (min>campo[j].getAtk()) {
-                        min=campo[j].getAtk();
-                        index = j;
-                    }
-                }
-                }
-                danno = campo[i].getAtk() - campo[i].getDef();
-                if (danno==0){
-                    danno=Utility.dannominimo();
-                }
-                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
-                if (campo[index].getPuntiVita()<=0) {
-                    campo[index]=null;
-                }
+                System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", attaccherà la carta con l'ATK più basso di " + avversario.nomegiocatore + ".");
+                        sottoAttacco = avversario.campo[0];
+                        for (int j = 0; j < avversario.campo.length; j++) {
+                            if (sottoAttacco == null) {
+                                sottoAttacco = avversario.campo[j];
+                                continue;
+                            }
+                            if (avversario.campo[j] != null) {
+                                if (sottoAttacco.atk > avversario.campo[j].atk) {
+                                    sottoAttacco = avversario.campo[j];
+                                }
+                            }
+                        }
+                        danno = campo[i].atk - sottoAttacco.def;
+                        if (danno > 0) {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto " + danno + " danni alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= danno;
+                        }
+                        else {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= 1;
+                        }
                 break;
             case ATK_FORTE:
-                for (int j = 0; j < campo.length; j++) {
-                    if (campo[j]!=null) {
-                    if (max<campo[j].getAtk()) {
-                        max=campo[j].getAtk();
-                    }
-                }
-                }
-                danno = campo[i].getAtk() - campo[i].getDef();
-                if (danno==0){
-                    danno=Utility.dannominimo();
-                }
-                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
-                if (campo[index].getPuntiVita()<=0) {
-                    campo[index]=null;
-                }
+                System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", attaccherà la carta con l'ATK più alto di " + avversario.nomegiocatore + ".");
+                        sottoAttacco = avversario.campo[0];
+                        for (int j = 0; j < avversario.campo.length; j++) {
+                            if (sottoAttacco == null) {
+                                sottoAttacco = avversario.campo[j];
+                                continue;
+                            }
+                            if (avversario.campo[j] != null) {
+                                if (sottoAttacco.atk < avversario.campo[j].atk) {
+                                    sottoAttacco = avversario.campo[j];
+                                }
+                            }
+                        }
+                        danno = campo[i].atk - sottoAttacco.def;
+                        if (danno > 0) {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto " + danno + " danni alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= danno;
+                        }
+                        //eccezione attacco
+                        else {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= 1;
+                        }
                 break;
             case HP_ALTO:
-                for (int j = 0; j < campo.length; j++) {
-                    if (campo[j]!=null) {
-                    if (max<campo[j].getPuntiVita()) {
-                        max=campo[j].getPuntiVita();
-                    }
-                }
-                }
-                danno = campo[i].getAtk() - campo[i].getDef();
-                if (danno==0){
-                    danno=Utility.dannominimo();
-                }
-                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
-                if (campo[index].getPuntiVita()<=0) {
-                    campo[index]=null;
-                }
+                System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", attaccherà la carta con gli HP più alti di " + avversario.nomegiocatore + ".");
+                        sottoAttacco = avversario.campo[0];
+                        for (int j = 0; j < avversario.campo.length; j++) {
+                            if (sottoAttacco == null) {
+                                sottoAttacco = avversario.campo[j];
+                                continue;
+                            }
+                            if (avversario.campo[j] != null) {
+                                if (sottoAttacco.puntiVita < avversario.campo[j].puntiVita) {
+                                    sottoAttacco = avversario.campo[j];
+                                }
+                            }
+                        }
+                        danno = campo[i].atk - sottoAttacco.def;
+                        if (danno > 0) {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto " + danno + " danni alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= danno;
+                        }
+                        else {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= 1;
+                        }
                 break;
             case HP_BASSO:
-                for (int j = 0; j < campo.length; j++) {
-                    if (campo[j]!=null) {
-                    if (min>campo[j].getPuntiVita()) {
-                        min=campo[j].getPuntiVita();
-                        index = j;
-                    }
-                }
-                }
-                danno = campo[i].getAtk() - campo[i].getDef();
-                if (danno==0){
-                    danno=Utility.dannominimo();
-                }
-                campo[index].setPuntiVita(campo[index].getPuntiVita()-danno);
-                if (campo[index].getPuntiVita()<=0) {
-                    campo[index]=null;
-                }
+                System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", attaccherà la carta con gli HP più bassi di " + avversario.nomegiocatore + ".");
+                        sottoAttacco = avversario.campo[0];
+                        for (int j = 0; j < avversario.campo.length; j++) {
+                            if (sottoAttacco == null) {
+                                sottoAttacco = avversario.campo[j];
+                                continue;
+                            }
+                            if (avversario.campo[j] != null) {
+                                if (sottoAttacco.puntiVita > avversario.campo[j].puntiVita) {
+                                    sottoAttacco = avversario.campo[j];
+                                }
+                            }
+                        }
+                        danno = campo[i].atk - sottoAttacco.def;
+                        if (danno > 0) {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto " + danno + " danni alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= danno;
+                        }
+                        else {
+                            System.out.println("La carta " + campo[i].nome + ", di " + this.nomegiocatore + ", ha inflitto 1 danno alla carta " + sottoAttacco.nome + ", di " + avversario.nomegiocatore + ".");
+                            sottoAttacco.puntiVita -= 1;
+                        }
                 break;
         
             default:
