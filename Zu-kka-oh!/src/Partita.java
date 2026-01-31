@@ -11,7 +11,9 @@ primoTurno = true;
 }
 // Gioca 1 solo turno. Se `turno` è pari, tocca al giocatore1,
 // altrimenti tocca al giocatore2
-public void turno(boolean primoturno, Giocatore giocatoreCorrente, Giocatore avversario) {
+public void turno(boolean primoturno) {
+    Giocatore giocatoreCorrente= new Giocatore(null);
+    Giocatore avversario =new Giocatore(null);
     if (turno % 2 == 0){
         giocatoreCorrente=giocatore1;
         avversario=giocatore2;
@@ -30,6 +32,7 @@ public void turno(boolean primoturno, Giocatore giocatoreCorrente, Giocatore avv
         giocatoreCorrente.evocaCarta(giocatoreCorrente.getMano(), giocatoreCorrente.getCarteincampo()); 
         giocatoreCorrente.attacca(avversario.getCarteincampo(), avversario);   
     }
+    turno++;
  }
 
 // Controlla se la partita è finita
@@ -49,5 +52,8 @@ public Giocatore getVincitore() {
 // Simula l'intera partita (vedi dopo)
 public void gioca() {
     System.out.println("inizio della partita tra "+giocatore1.getNomegiocatore()+" e "+giocatore2.getNomegiocatore());
+    while (!isFinita()){
+        turno(primoTurno);
+    }
  }
 }
