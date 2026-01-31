@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Partita {
 private Giocatore giocatore1;
 private Giocatore giocatore2;
@@ -14,26 +16,36 @@ primoTurno = true;
 public void turno(boolean primoturno) {
     Giocatore giocatoreCorrente= new Giocatore(null);
     Giocatore avversario =new Giocatore(null);
-    if (turno % 2 == 0){
+    
+    System.out.println(primoturno);
+    while (turno<8) {
+        if (turno % 2 == 0){
         giocatoreCorrente=giocatore1;
         avversario=giocatore2;
     }else {
         giocatoreCorrente=giocatore2;
         avversario=giocatore1;
     }
-    if (primoturno){
+        if (primoturno){
         primoturno=false;
+        System.out.println(primoturno);
         System.out.println("turno di "+giocatoreCorrente.getNomegiocatore());
         giocatoreCorrente.pescaCarte(giocatoreCorrente.getMazzo(), giocatoreCorrente.getMano());
         giocatoreCorrente.evocaCarta(giocatoreCorrente.getMano(), giocatoreCorrente.getCarteincampo());    
-    } else {
-        giocatoreCorrente.pescaCarte(giocatoreCorrente.getMazzo(), giocatoreCorrente.getMano());
+    } 
+    else {
         System.out.println("turno di "+giocatoreCorrente.getNomegiocatore());
+        giocatoreCorrente.pescaCarte(giocatoreCorrente.getMazzo(), giocatoreCorrente.getMano());
+        System.out.println(Arrays.toString(giocatoreCorrente.getMano()) );
         giocatoreCorrente.evocaCarta(giocatoreCorrente.getMano(), giocatoreCorrente.getCarteincampo()); 
-        giocatoreCorrente.attacca(avversario.getCarteincampo(), avversario);   
+        System.out.println(Arrays.toString(giocatoreCorrente.getCarteincampo()));
+        giocatoreCorrente.attacca(avversario.getCarteincampo(), avversario);
+        System.out.println(Arrays.toString(avversario.getCarteincampo()));   
     }
     turno++;
  }
+    }
+    
 
 // Controlla se la partita è finita
 public boolean isFinita() {
@@ -52,8 +64,8 @@ public Giocatore getVincitore() {
 // Simula l'intera partita (vedi dopo)
 public void gioca() {
     System.out.println("inizio della partita tra "+giocatore1.getNomegiocatore()+" e "+giocatore2.getNomegiocatore());
-    while (!isFinita()){
         turno(primoTurno);
-    }
+        System.out.println(giocatore1.getVita());
+    getVincitore();
  }
 }

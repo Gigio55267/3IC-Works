@@ -62,24 +62,25 @@ public class Giocatore {
                 break;
             }
         }
+        mano=Utility.insertionSortVita(mano);
     }
     public void evocaCarta(Carta[] mano,Carta[] campo){
         int indexCartaDaPiazzare=0;
-        Carta[] carte = Utility.insertionSortVita(this.mano);
+        Carta[] carte = mano;
         for (int i = 0; i < carte.length; i++) {
             if (carte[i]!=null) {
-               carte[i]=null;
-               indexCartaDaPiazzare=i;
-               break;
-            } 
-            }
-        for (int i = 0; i < campo.length; i++) {
+                indexCartaDaPiazzare=i;
+               System.out.println("hai evocato "+carte[i].getNome());
+               for (int j = 0; j < campo.length; j++) {
              if (Utility.trovaSpazioVuoto(campo)) {
                 campo[i]=carte[indexCartaDaPiazzare];
                 break;
-        }
-        }
-       
+                }
+            }
+            carte[i]=null;   
+            break;
+            } 
+        }  
     }
     public void attacca(Carta[]campo, Giocatore avversario){
         int min = 1000000000;
@@ -94,17 +95,20 @@ public class Giocatore {
                     avversario.setVita(avversario.getVita()-1);
                     
                 }
+                break;
             }
             else{}
             switch (this.getCarteincampo()[i].getTarget()) {
             case DEF_DEBOLE:
                 for (int j = 0; j < campo.length; j++) {
-                    if (min>campo[j].getDef()) {
+                    if (campo[j]!=null) {
+                        if (min>campo[j].getDef()) {
                         min=campo[j].getDef();
                         index = j;
                     }
+                    }
                 }
-                danno = campo[i].getDef() - campo[i].getAtk();
+                danno = campo[i].getAtk() - campo[i].getDef();
                 if (danno==0){
                     danno=Utility.dannominimo();
                 }
@@ -116,11 +120,13 @@ public class Giocatore {
                 break;
             case DEF_FORTE:
                 for (int j = 0; j < campo.length; j++) {
+                    if (campo[j]!=null) {
                     if (max<campo[j].getDef()) {
                         max=campo[j].getDef();
                     }
                 }
-                danno = campo[i].getDef() - campo[i].getAtk();
+                }
+                danno = campo[i].getAtk() - campo[i].getDef();
                 if (danno==0){
                     danno=Utility.dannominimo();
                 }
@@ -131,12 +137,14 @@ public class Giocatore {
                 break;
             case ATK_DEBOLE:
                 for (int j = 0; j < campo.length; j++) {
+                    if (campo[j]!=null) {
                     if (min>campo[j].getAtk()) {
                         min=campo[j].getAtk();
                         index = j;
                     }
                 }
-                danno = campo[i].getDef() - campo[i].getAtk();
+                }
+                danno = campo[i].getAtk() - campo[i].getDef();
                 if (danno==0){
                     danno=Utility.dannominimo();
                 }
@@ -147,11 +155,13 @@ public class Giocatore {
                 break;
             case ATK_FORTE:
                 for (int j = 0; j < campo.length; j++) {
+                    if (campo[j]!=null) {
                     if (max<campo[j].getAtk()) {
                         max=campo[j].getAtk();
                     }
                 }
-                danno = campo[i].getDef() - campo[i].getAtk();
+                }
+                danno = campo[i].getAtk() - campo[i].getDef();
                 if (danno==0){
                     danno=Utility.dannominimo();
                 }
@@ -162,11 +172,13 @@ public class Giocatore {
                 break;
             case HP_ALTO:
                 for (int j = 0; j < campo.length; j++) {
+                    if (campo[j]!=null) {
                     if (max<campo[j].getPuntiVita()) {
                         max=campo[j].getPuntiVita();
                     }
                 }
-                danno = campo[i].getDef() - campo[i].getAtk();
+                }
+                danno = campo[i].getAtk() - campo[i].getDef();
                 if (danno==0){
                     danno=Utility.dannominimo();
                 }
@@ -177,12 +189,14 @@ public class Giocatore {
                 break;
             case HP_BASSO:
                 for (int j = 0; j < campo.length; j++) {
+                    if (campo[j]!=null) {
                     if (min>campo[j].getPuntiVita()) {
                         min=campo[j].getPuntiVita();
                         index = j;
                     }
                 }
-                danno = campo[i].getDef() - campo[i].getAtk();
+                }
+                danno = campo[i].getAtk() - campo[i].getDef();
                 if (danno==0){
                     danno=Utility.dannominimo();
                 }
