@@ -110,4 +110,105 @@ public class Carta {
     public static void setSuffissi(String[] suffissi) {
         Carta.suffissi = suffissi;
     }
+    public int trovaTarget(Target target, Carta[] campo){
+        switch (target) {
+            case ATK_FORTE:
+                Carta attaccare = campo[0];
+                int pos = 0;
+                for (int i = 1; i < campo.length; i++) {
+                    if (campo[i] != null){
+                        if (attaccare == null){
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                        else if (campo[i].atk > attaccare.atk) {
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                    }
+                }
+                return pos;
+            case ATK_DEBOLE:
+                attaccare = campo[0];
+                pos = 0;
+                for (int i = 1; i < campo.length; i++) {
+                    if (campo[i] != null){
+                        if (attaccare == null){
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                        else if (campo[i].atk < attaccare.atk) {
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                    }
+                }
+                return pos;
+            case DEF_FORTE:
+                attaccare = campo[0];
+                pos = 0;
+                for (int i = 1; i < campo.length; i++) {
+                    if (campo[i] != null){
+                        if (attaccare == null){
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                        else if (campo[i].def > attaccare.def) {
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                    }
+                }
+                return pos;
+            case DEF_DEBOLE:
+                attaccare = campo[0];
+                pos = 0;
+                for (int i = 1; i < campo.length; i++) {
+                    if (campo[i] != null){
+                        if (attaccare == null){
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                        else if (campo[i].def < attaccare.def) {
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                    }
+                }
+                return pos;
+            case HP_ALTO:
+                attaccare = campo[0];
+                pos = 0;
+                for (int i = 1; i < campo.length; i++) {
+                    if (campo[i] != null){
+                        if (attaccare == null){
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                        else if (campo[i].puntiVita > attaccare.puntiVita) {
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                    }
+                }
+                return pos;
+            case HP_BASSO:
+                attaccare = campo[0];
+                pos = 0;
+                for (int i = 1; i < campo.length; i++) {
+                    if (campo[i] != null){
+                        if (attaccare == null){
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                        else if (campo[i].puntiVita < attaccare.puntiVita) {
+                            attaccare = campo[i];
+                            pos = i;
+                        }
+                    }
+                }
+                return pos;
+        }
+        return 0;
+    }
 }
