@@ -67,6 +67,6 @@ public void gioca() {
         turno();
         turno++;
     }
-    getVincitore();
+    System.out.println((getVincitore().nomegiocatore));
  }
 }
