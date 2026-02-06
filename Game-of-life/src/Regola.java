@@ -1,15 +1,27 @@
 
+
+
 public class Regola {
-    String[] rule={"111","110","101","100","011","010","001","000"};
-    public static String[] calcolaREgola(int[]regola){
-        String[] regolato =new String[8];
-        int cont=0;
-        for (int i = 0; i < regola.length; i+=3) {
-            for (int j = 0; j < 3; j++) {
-                regolato[cont]+=""+regola[j];
-            }
-            cont++;
+    public static char[] calcolaREgola(int regola){
+        char[] regolato =new char[8];
+        String binari =Integer.toBinaryString(regola);
+        if (binari.length()<8) {
+            regolato[0]='0';
+            for (int i = 0; i < binari.length(); i++) {
+                System.out.println(binari);
+                regolato[i+1]= binari.charAt(i);
+                System.out.println(i);
+            } 
         }
+        else{
+            for (int i = 0; i < 7; i++) {
+                System.out.println(binari);
+                regolato[i]= binari.charAt(i);
+                System.out.println(i);
+            }
+        }
+
+          
         return regolato;
     }
     

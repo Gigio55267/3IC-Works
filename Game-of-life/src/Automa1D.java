@@ -1,8 +1,8 @@
-import java.util.Arrays;
 
-public class Automa1D extends Regola {
+public class Automa1D {
         private static int[] striscia;
-                private int regola;  
+        
+                protected  int regola;  
                 char[]newgen;
                 public Automa1D(int larghezza, int regola) {
                 this.striscia = new int[larghezza];
@@ -12,35 +12,75 @@ public class Automa1D extends Regola {
                 // vedere se si "propaga"
                  }
         
-                 public char[] calcolaStato(int sinistra, int centro, int destra) {
+                public char[] calcolaStato() {
                         String[] creazioneGEn=new String[8];
-                        String riga="";
-                        int cont =0;
-                        for (int i = 0; i < striscia.length; i+=3) {
-                                for (int j = 0; j < 8; j++) {
-                                        riga=""+striscia[j];
-                                }
-                                creazioneGEn[cont]=riga;
-                                cont++;    
-                        }
-                        for (int i = 0; i < creazioneGEn.length; i++) {
-                                switch (creazioneGEn[i]) {
+                        String[] rule={"111","110","101","100","011","010","001","000"};
+                        char[] regolabin=Regola.calcolaREgola(this.regola);
+                       for (int i = 0; i < creazioneGEn.length; i++) {
+                               switch (rule[i]) {
                                         case "111":
-        
-                                                break;
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
+                                               break;
                                         case "110":
-                                                break;
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
+                                               break;
                                         case "101":
-                                                break;
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
+                                               break;
                                         case "100":
-                                                break;
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
+                                               break;
                                         case "011":
-                                                break;
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
+                                               break;
                                         case "010":
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
                                                 break;
                                         case "001":
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
                                                 break;
                                         case "000":
+                                                if (regolabin[i]=='1') {
+                                                        newgen[i]='1';
+                                                }
+                                                else {
+                                                        newgen[i]='0';
+                                                }
                                                 break;
                                 
                                         default:
@@ -64,14 +104,5 @@ public class Automa1D extends Regola {
                          }
                          System.out.println();
                          }
-                        
-                         public static void main(String[] args) {
-                        System.out.println(Arrays.toString(calcolaREgola(striscia)));
-                 Automa1D ac = new Automa1D(61, 110);
-                for (int i = 0; i < 30; i ++) {
-                 ac.stampa();
-                 ac.nextStato();
-                 }
-                }
                 
          }

@@ -20,6 +20,7 @@ public static final String ANSI_WHITE = "\u001B[37m";
  // Poi, quando vogliamo stampare facciamo qualcosa di questo tipo
  public static void main(String[] args) {
  System.out.println(ANSI_RED + ANSI_YELLOW_BACKGROUND + "Questo testo è in rosso!" + ANSI_RESET);
+ 
  }
  
 }
