@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Automa1D {
         private static char[] striscia;
@@ -14,18 +15,21 @@ public class Automa1D {
         }
 
         public char[] calcolaStato(int sx, int centro, int dx) {
+                System.out.println(Arrays.toString(striscia));
                 String[] creazioneGEn = new String[8];
                 String combinazione = "";
                 String[] rule = new String[8];
                 // String[] rule = { "111", "110", "101", "100", "011", "010", "001", "000" };
-                for (int i = 0; i < rule.length; i++) {
+                for (int i = 0; i < 8; i++) {
                         if (i - 1 < 0)
-                                combinazione = "" + centro + dx;
+                                combinazione = "0" + centro + dx;
                         else if (i + 1 > 0)
-                                combinazione = "" + sx + centro;
+                                combinazione =  sx + centro+"0";
                         else
                                 combinazione = "" + sx + centro + dx;
                         rule[i] = combinazione;
+                        System.out.println(Arrays.toString(rule));
+                        
                 }
                 char[] regolabin = Regola.calcolaREgola(this.regola);
                 for (int i = 0; i < creazioneGEn.length; i++) {
@@ -91,20 +95,27 @@ public class Automa1D {
                                         break;
                         }
                 }
-
+                System.out.println(Arrays.toString(newgen));
                 return newgen;
         }
 
         public void nextStato() {
+                int sx = 0;
+                int dx = 0;
                 char[] nuovoStato = new char[striscia.length];
                 for (int i = 0; i < striscia.length; i++) {
-                        int sx = striscia[i - 1];
+                        if (i-1<0);
+                        else
+                        sx = striscia[i - 1];
                         int centro = striscia[i];
-                        int dx = striscia[i + 1];
+                        if (i+1>striscia.length) 
+                        dx = striscia[i + 1];
 
                         nuovoStato[i] = calcolaStato(sx, centro, dx)[i];
+                        System.out.println(Arrays.toString(nuovoStato));
                 }
                 striscia = nuovoStato;
+                System.out.println(Arrays.toString(striscia));
         }
 
         public void stampa() {
