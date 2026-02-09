@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Partita {
 private Giocatore giocatore1;
@@ -15,10 +14,10 @@ primoTurno = true;
 // altrimenti tocca al giocatore2
 public void turno() {
     
-    System.out.println();
+    //System.out.println();
     if (primoTurno){
         primoTurno=false;
-        System.out.println(primoTurno);
+        //System.out.println(primoTurno);
         System.out.println("turno di "+giocatore1.getNomegiocatore());
         giocatore1.pescaCarte(giocatore1.getMazzo(), giocatore1.getMano());
         giocatore1.evocaCarta(giocatore1.getMano(), giocatore1.getCarteincampo());}
@@ -27,21 +26,21 @@ public void turno() {
         giocatore1.pescaCarte(giocatore1.getMazzo(), giocatore1.getMano());
         //System.out.println(Arrays.toString(giocatoreCorrente.getMano()) );
         giocatore1.evocaCarta(giocatore1.getMano(), giocatore1.getCarteincampo()); 
-        System.out.println("giocatore corrente "+Arrays.toString(giocatore1.getCarteincampo()));
+        //System.out.println("giocatore corrente "+Arrays.toString(giocatore1.getCarteincampo()));
         giocatore1.attacca( giocatore2);
-        System.out.println("avversario "+Arrays.toString(giocatore2.getCarteincampo())); 
-        System.out.println(giocatore1.getVita());
-        System.out.println("mano "+ Arrays.toString(giocatore1.getMano()));
+        //System.out.println("avversario "+Arrays.toString(giocatore2.getCarteincampo())); 
+        //System.out.println(giocatore1.getVita());
+        //System.out.println("mano "+ Arrays.toString(giocatore1.getMano()));
         }else {
         System.out.println("turno di "+giocatore2.getNomegiocatore());
         giocatore2.pescaCarte(giocatore2.getMazzo(), giocatore2.getMano());
         //System.out.println(Arrays.toString(giocatoreCorrente.getMano()) );
         giocatore2.evocaCarta(giocatore2.getMano(), giocatore2.getCarteincampo()); 
-        System.out.println("giocatore corrente "+Arrays.toString(giocatore2.getCarteincampo()));
+        //System.out.println("giocatore corrente "+Arrays.toString(giocatore2.getCarteincampo()));
         giocatore2.attacca( giocatore1);
-        System.out.println("avversario "+Arrays.toString(giocatore1.getCarteincampo())); 
-        System.out.println(giocatore2.getVita());
-        System.out.println("mano "+ Arrays.toString(giocatore2.getMano()));
+       // System.out.println("avversario "+Arrays.toString(giocatore1.getCarteincampo())); 
+       // System.out.println(giocatore2.getVita());
+       // System.out.println("mano "+ Arrays.toString(giocatore2.getMano()));
     }     
  }
     
@@ -67,6 +66,6 @@ public void gioca() {
         turno();
         turno++;
     }
-    System.out.println((getVincitore().nomegiocatore));
+    System.out.println("il vincitore è:"+(getVincitore().nomegiocatore));
  }
 }

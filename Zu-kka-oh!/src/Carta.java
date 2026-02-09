@@ -20,7 +20,7 @@ public class Carta {
             this.puntiVita =(int) (Math.random()*(49)+1);
             this.atk =(int) (Math.random()*(50));
             this.def = (int)(Math.random()*(50));
-        } while (atk+def+puntiVita>100);
+        } while (this.atk+this.def+this.puntiVita>100);
         this.target = Target.targetRandom();
     }
     public String getNome() {
