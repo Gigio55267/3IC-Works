@@ -111,6 +111,7 @@ public class Carta {
         Carta.suffissi = suffissi;
     }
     public int trovaTarget(Target target, Carta[] campo){
+        Carta attuale = campo[0];
         switch (target) {
             case ATK_FORTE:
                 Carta attaccare = campo[0];

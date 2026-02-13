@@ -1,17 +1,31 @@
 
 public class Partita {
-    private Giocatore giocatore1;
-    private Giocatore giocatore2;
+    private final Giocatore giocatore1;
+    private final Giocatore giocatore2;
     private int turno;
+    private Giocatore terzaPersona;
+    private Giocatore giocatoreAtt;
+    private Giocatore avversario;
     private boolean primoTurno;
 
     public Partita(String nome1, String nome2) {
-        giocatore1 = new Giocatore(nome1);
-        giocatore2 = new Giocatore(nome2);
-        turno = 0;
-        primoTurno = true;
+        this.giocatore1 = new Giocatore(nome1);
+        this.giocatore2 = new Giocatore(nome2);
+        this.turno = 0;
+        this.primoTurno = true;
     }
-
+    public void scambioGiocatori(){
+        this.terzaPersona=this.giocatoreAtt;
+        this.giocatoreAtt=this.avversario;
+        this.avversario=this.terzaPersona;
+    }
+    public void turnoV2(){
+        
+        if (primoTurno) {
+            giocatoreAtt.pescaCarte(giocatoreAtt.getMazzo(),giocatoreAtt.getMano(),turno);  
+            giocatoreAtt.evocaCarta(giocatoreAtt.getMano(), giocatoreAtt.getCarteincampo());  
+        }
+    }
     // Gioca 1 solo turno. Se `turno` è pari, tocca al giocatore1,
     // altrimenti tocca al giocatore2
     public void turno() {
@@ -37,7 +51,7 @@ public class Partita {
             // System.out.println("mano "+ Arrays.toString(giocatore1.getMano()));
         } else {
             System.out.println("turno di " + giocatore2.getNomegiocatore());
-            giocatore2.pescaCarte(giocatore2.getMazzo(), giocatore2.getMano(),this.turno);
+            giocatore2.pescaCarte(giocatore2.getMazzo(), giocatore2.getMano(), this.turno);
             // System.out.println(Arrays.toString(giocatoreCorrente.getMano()) );
             giocatore2.evocaCarta(giocatore2.getMano(), giocatore2.getCarteincampo());
             // System.out.println("giocatore corrente

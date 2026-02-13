@@ -77,13 +77,13 @@ public class Giocatore {
                 //if (mazzo[turno-5] != null) {
                     mano[i] = mazzo[turnoatt-1];
                     System.out.println("hai pescato");
-                }
                 break;
+            }
             //}
             //break;
         }
         // }
-        mano = Utility.insertionSortVita(mano);
+        Utility.insertionSortVita(mano);
     }
 
     public void evocaCarta(Carta[] mano, Carta[] campo) {
@@ -133,7 +133,7 @@ public class Giocatore {
                     if (cartaSottoAttacco.puntiVita <= 0) {
                         System.out.println(cartaSottoAttacco.nome + " è stato distrutto!");
                         for (int j = 0; j < avversario.campo.length; j++) {
-                            if (avversario.campo[j] == cartaSottoAttacco) {
+                            if (avversario.campo[j] == cartaSottoAttacco) { // == .equals()
                                 avversario.campo[j] = null;
                                 break;
                             } else {

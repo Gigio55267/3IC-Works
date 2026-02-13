@@ -6,9 +6,6 @@ public class Utility {
             if (arr[i]==null)  return true ; }
         return false;
     }
-    public static int dannominimo(){
-        return 1;
-    }
     public static Carta[] insertionSortTotale(Carta[] array){
         for (int i = 1; i < array.length; i++) {
             if (array[i] != null) {
