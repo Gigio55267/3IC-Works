@@ -1,4 +1,5 @@
 public interface Forma {
+    int length = 0;
     // Il punto (x, y) è contenuto in questa forma?
     boolean contiene(double x, double y);
     // Che carattere devo usare per disegnare?
