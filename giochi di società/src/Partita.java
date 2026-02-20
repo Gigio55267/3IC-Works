@@ -23,7 +23,7 @@ public class Partita {
         Giocatore[]classifica=new Giocatore[players.length];
         classifica=Utility.insertionSortTotale(players);
         for (int i = 0; i < classifica.length; i++) {
-            System.out.println((i+1)+" "+classifica[i].nome+"vittorie:"+classifica[i].partitevinte);
+            System.out.println((i+1)+" "+classifica[i].nome+" vittorie:"+classifica[i].partitevinte);
         }
     }
 }

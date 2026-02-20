@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Scanner kbr=new Scanner(System.in);
         System.out.print("in quanti giocate :");
         int tot=kbr.nextInt();
@@ -14,7 +14,7 @@ public class Main {
         }
         Partita partita = new Partita(arraypermetodo);
         partita.gioca();
-        
+        partita.torneo();
         partita.classifica();
     }
 }
