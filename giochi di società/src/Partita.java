@@ -14,8 +14,8 @@ public class Partita {
         players [ris].partitevinte++;
         System.out.println("il vincitore è :"+players [ris].nome);
     }
-    public void torneo (){
-        for (int i = 0; i < 10; i++) {
+    public void torneo (int part){
+        for (int i = 0; i < part; i++) {
             gioca();
         }
     }

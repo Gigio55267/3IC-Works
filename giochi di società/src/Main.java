@@ -13,8 +13,21 @@ public class Main {
             arraypermetodo[i]=new Giocatore(nome);
         }
         Partita partita = new Partita(arraypermetodo);
-        partita.gioca();
-        partita.torneo();
-        partita.classifica();
+        System.out.println("se voui fare un torneo scrivi torneo\nse vuoi fare una sola partita scrivi partita");
+        String scelta=kbr.nextLine();
+        switch (scelta.toUpperCase()) {
+            case "PARTITA":
+                partita.gioca();
+                partita.classifica();
+                break;
+            case "TORNEO":
+                System.out.println("quante partite");
+                int partite=kbr.nextInt();
+                partita.torneo(partite);
+                partita.classifica();
+        
+            default:
+                break;
+        }
     }
 }
