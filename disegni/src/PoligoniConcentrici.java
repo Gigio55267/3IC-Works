@@ -46,7 +46,7 @@ public class PoligoniConcentrici extends TurtleScreen {
         System.out.print("Dimmi quanti poligoni disegnare: ");
         int k = kbd.nextInt();
 
-        PoligoniConcentrici disegno = new PoligoniConcentrici(n, k);
-        disegno.run();
+        PoligoniConcentrici poligonoDisegnato = new PoligoniConcentrici(n, k);
+        poligonoDisegnato.run();
     }
 }
