@@ -1,5 +1,6 @@
-import turtle.*;       // Importa la libreria turtle
-import java.awt.Color;
+
+import java.awt.Color;       // Importa la libreria turtle
+import turtle.*;
 
 /**
  * Demo che disegna un albero frattale usando la ricorsione
