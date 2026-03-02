@@ -31,7 +31,7 @@ public class FigureFrattali extends TurtleScreen{
     }
     public void fioccoDiNeveDiKoch(){
         for (int i = 0; i < 3; i++) {
-            curvaCoch(5, lunghezza);
+            curvaCoch(7, lunghezza);
             t.right(120);
         }
     }
