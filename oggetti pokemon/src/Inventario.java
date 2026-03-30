@@ -5,6 +5,19 @@ public class Inventario {
     protected ArrayList<Item> beg = new ArrayList<>();
 
     public void addItem(Item item) {
+        for (int i = 0; i < beg.size(); i++) {
+            if (beg.get(i) == item) {
+                if (beg.get(i) instanceof Item l) {
+                    if (l.quantita++ > l.STAK) {
+                        beg.add(0, item);
+                        break;
+                    } else {
+                        l.quantita++;
+                        break;
+                    }
+                }
+            }
+        }
         beg.add(0, item);
     }
 
