@@ -3,6 +3,7 @@
 public class Pedone extends Pedina {
     Scacchiera p =new Scacchiera(5,5);
     Player p1=new Player();
+    char[][]tabellone=p.Generascachiera();
     //mat[riga up down ][colonna dx sx]
     public Pedone(String tipo, String colore) {
             super(tipo, colore);
@@ -52,7 +53,7 @@ public class Pedone extends Pedina {
         int x1=posizione[1]+1;
         int y1=posizione[0]+1;
         int y2=posizione[0]-1;
-        if (p[x1][y2]=='#') {
+        if (tabellone[x1][y2]=='#') {
             
         }
     }

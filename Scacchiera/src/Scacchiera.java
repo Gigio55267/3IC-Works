@@ -9,12 +9,13 @@ public class Scacchiera {
         this.rig = rig;
     }
     // riempie la matrice con # per considerare gli spazzi liberi 
-    public void Generascachiera(){
+    public char[][] Generascachiera(){
         for (int i = 0; i < tabellone.length; i++) {
             for (int j = 0; j < tabellone[i].length; j++) {
                 tabellone[i][j]='#';
                 System.out.println();
             }
         }
+        return tabellone;
     }
 }
