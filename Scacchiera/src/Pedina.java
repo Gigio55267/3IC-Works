@@ -8,7 +8,7 @@ public abstract class Pedina {
         this.posizione[0]=0;
         this.posizione[1]=0;
     }
-    public abstract void muovi(char  direzione,int caselle);
+    public abstract void muovi(char  direzione,int caselle)throws MovimentoNonValidoExeption;
     public abstract void catturato();
     public abstract void mangia(); 
 }
