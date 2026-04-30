@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Player {
-    ArrayList<Pedina> catturati = new ArrayList<>();
-    //public void scegliPedina(){
+    ArrayList<String> catturati = new ArrayList<String>();
+    public void scegliPedina(){
     //    do {
             //try {
             //    pedina.muovi()
@@ -12,4 +12,5 @@ public class Player {
             //}
         //} while (condition);
    // }
+    }
 }

@@ -1,6 +1,6 @@
 public class Totti extends Pedina{
 
-    public Totti(String tipo, String colore) {
+    public Totti(char tipo, String colore) {
             super(tipo, colore);
         }
     
@@ -11,7 +11,7 @@ public class Totti extends Pedina{
     }
 
     @Override
-    public void catturato() {
+    public void catturato(char pezzo) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'catturato'");
     }
@@ -20,6 +20,12 @@ public class Totti extends Pedina{
     public void mangia() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'mangia'");
+    }
+
+    @Override
+    public void posizioniPossibili() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'posizioniPossibili'");
     }
     
 }
