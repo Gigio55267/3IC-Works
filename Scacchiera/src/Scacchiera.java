@@ -3,6 +3,8 @@ public class Scacchiera {
     protected int col;
     protected int rig;
     protected char[][] tabellone = new char[rig][col];
+    public static final String ANSI_NER = "\u001B[34m";
+    public static final String ANSI_RESET = "\u001B[1;37m";
 
     public Scacchiera(int col, int rig) {
         this.col = col;
@@ -21,15 +23,34 @@ public class Scacchiera {
     }
 
     public void stampaScacchiera() {
-        System.out.println("la scacchiera è:");
+        int cont = 0;
+        System.out.println(ANSI_RESET + "la scacchiera è:");
         for (int i = 0; i < tabellone.length; i++) {
             for (int j = 0; j < tabellone[i].length; j++) {
-                if (j < tabellone[i].length - 1) {
-                    System.out.print(tabellone[i][j] + " ");
+                if (j < tabellone[j].length - 1) {
+                    if (cont == 0) {
+                        System.out.print(ANSI_NER + tabellone[i][j] + ANSI_RESET + " ");
+                        cont++;
+                    } else {
+                        System.out.print(tabellone[i][j] + " ");
+                        cont--;
+                    }
                 } else {
-                    System.out.println(tabellone[i][j]);
+                    if (cont == 0) {
+                        System.out.println(ANSI_NER + tabellone[i][j] + ANSI_RESET);
+                        cont++;
+                    } else {
+                        System.out.println(tabellone[i][j] + " ");
+                        cont--;
+                    }
+                    
                 }
             }
+            if (cont == 0) {
+                        cont++;
+                    } else {
+                        cont--;
+                    }
         }
     }
 
