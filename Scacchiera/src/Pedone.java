@@ -2,48 +2,17 @@
 public class Pedone extends Pedina {
     Scacchiera p = new Scacchiera(5, 5);
     Player p1 = new Player();
-    char[][] tabellone = p.Generascachiera();
+    char[][] tabello = p.Generascachiera();
 
     // mat[riga up down ][colonna dx sx]
-    public Pedone(char tipo, String colore) {
-        super(tipo, colore);
+    public Pedone(char tipo, String colore , int rig , int col) {
+        super(tipo, colore, rig, col);
     }
 
     @Override
-    public void muovi(char direzione, int caselle) throws MovimentoNonValidoExeption {
-        // verifica che il pedone non si muova più di una casella in avanti
-        if (caselle != 1)
-            throw new MovimentoNonValidoExeption();
-        switch (direzione) {
-            //verifica la posizione nella quale si muove il pedone e se è libera o no
-            case 'w':
-                if (this.posizione[0] + caselle > 0 && this.posizione[0] + caselle < p.rig) {
-                    if (tabellone[this.posizione[0]+1][this.posizione[1]]=='#') {
-                        this.posizione[0] = this.posizione[0] + caselle;
-                    }
-                    
-                }
-                break;
-            case 's':
-                System.out.println("non puoi tornare indietro");
-                // if (this.posizione[0]-caselle>0 && this.posizione[0]-caselle<p.rig) {
-                // this.posizione[0]=this.posizione[0]-caselle;
-                // }
-                break;
-            case 'a':
-                System.out.println("non puoi andare a sinistra");
-                // if (this.posizione[1]-caselle>0 && this.posizione[1]-caselle<p.rig) {
-                // this.posizione[1]=this.posizione[1]-caselle;
-                // }
-                break;
-            case 'd':
-                System.out.println("non puoi andare a sinistra");
-                // if (this.posizione[1]+caselle>0 && this.posizione[1]+caselle<p.rig) {
-                // this.posizione[1]=this.posizione[1]+caselle;
-                // }
-                // break;
-            default:
-                break;
+    public void muovi(int rig, int col) throws MovimentoNonValidoExeption {
+        if (p.tabellone[rig][col]=='#' && tabello[rig][col]=='x') {
+            
         }
     }
 
@@ -57,16 +26,16 @@ public class Pedone extends Pedina {
         int x1 = posizione[1] + 1;
         int y1 = posizione[0] + 1;
         int y2 = posizione[0] - 1;
-        if (tabellone[x1][y2] != '#') {
-            this.catturato(tabellone[x1][y2]);
+        if (tabello[x1][y2] != '#') {
+            this.catturato(tabello[x1][y2]);
             this.posizione[0] = y2;
             this.posizione[1] = x1;
             
         }
-        if (tabellone[x1][y1] != '#') {
-            this.catturato(tabellone[x1][y1]);
-            this.posizione[0] = y1;
-            this.posizione[1] = x1;
+        if (tabello[x1][y1] != '#') {
+            this.catturato(tabello[x1][y1]);
+            posizione[0] = y1;
+            posizione[1] = x1;
         }
     }
 
@@ -79,16 +48,21 @@ public class Pedone extends Pedina {
                 if (posizione[0] + 1 != '#') {
                     posPOssibili[posizione[0] + 1][posizione[1]] = 'x';
                 }
-                System.out.println(posPOssibili[i][j]);
+                if (j<7) {
+                    System.out.print(posPOssibili[i][j]);
+                }
+                else System.out.println(posPOssibili[i][j]);
+                
             }
         }
-        if (tabellone[posizione[1] + 1][posizione[0] - 1] != '#') {
+        if (tabello[posizione[1] + 1][posizione[0] - 1] != '#') {
             System.out.println("puoi mangiare a sinistra");
         }
-        if (tabellone[posizione[1] + 1][posizione[0] + 1] != '#') {
+        if (tabello[posizione[1] + 1][posizione[0] + 1] != '#') {
             System.out.println("puoi mangiare a destra");
         }
 
     }
-
+public static void main(String[] args) {
+}
 }

@@ -1,13 +1,15 @@
-public class Totti extends Pedina{
+public class Totti extends Pedina {
+    Scacchiera p = new Scacchiera(5, 5);
+    Player p1 = new Player();
+    char[][] tabellone = p.Generascachiera();
 
     public Totti(char tipo, String colore) {
-            super(tipo, colore);
-        }
-    
-        @Override
-    public void muovi(char direzione, int caselle) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'muovi'");
+        super(tipo, colore, tipo, tipo);
+    }
+
+    @Override
+    public void muovi(int rig, int caselle) throws MovimentoNonValidoExeption {
+       
     }
 
     @Override
@@ -24,8 +26,16 @@ public class Totti extends Pedina{
 
     @Override
     public void posizioniPossibili() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'posizioniPossibili'");
+        char posPOssibili[][] = new char[p.rig][p.col];
+        for (int i = 0; i < posPOssibili.length; i++) {
+            for (int j = 0; j < posPOssibili.length; j++) {
+                posPOssibili[i][j] = '#';
+                if (posizione[0] + 1 != '#') {
+                    posPOssibili[posizione[0] + 1][posizione[1]] = 'x';
+                }
+                System.out.println(posPOssibili[i][j]);
+            }
+        }
     }
-    
+
 }

@@ -4,6 +4,7 @@ public class Main {
         
     }
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Pedone ped=new Pedone('p', "bianco",0,0);
+        ped.posizioniPossibili();
     }
 }

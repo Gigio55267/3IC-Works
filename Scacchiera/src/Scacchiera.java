@@ -2,7 +2,7 @@
 public class Scacchiera {
     protected int col;
     protected int rig;
-    protected char[][] tabellone = new char[rig][col];
+    protected char[][] tabellone;
     public static final String ANSI_NER = "\u001B[34m";
     public static final String ANSI_RESET = "\u001B[1;37m";
 
