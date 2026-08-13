@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Monoposto {
     private int numerogare;
-    private String pilotatitolare;
+    private Pilota pilotatitolare;
     protected ArrayList<Componente> componenti;
-    public Monoposto(int numerogare, String pilotatitolare) {
+    public Monoposto(int numerogare, Pilota pilotatitolare) {
         this.numerogare = numerogare;
         this.pilotatitolare = pilotatitolare;
     }
@@ -17,7 +17,7 @@ public class Monoposto {
     public int getNumerogare() {
         return numerogare;
     }
-    public String getPilotatitolare() {
+    public Pilota getPilotatitolare() {
         return pilotatitolare;
     }
     public double pesoTotale(){
